@@ -1,9 +1,11 @@
 package com.tiedros.rest.webservices.dao;
 
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -42,4 +44,18 @@ public class UserDaoService {
 		users.add(user);
 		return user;
 	}
+	
+	public User deleteById(Integer id) {
+		Iterator<User> iterator=users.iterator();
+		while(iterator.hasNext()) {
+			User user=iterator.next();
+			if(user.getId()==id) {
+				users.remove(user);
+				return user;
+			}
+		}
+		return null;
+		
+	}
+	
 }
